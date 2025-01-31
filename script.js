@@ -1,38 +1,24 @@
-const getSumBtn = document.createElement("button");
-getSumBtn.append("Get Total Price");
-document.body.appendChild(getSumBtn);
-
-const getSum = () => {
-//Add your code here
-          function calculateTotal() {
-            let priceElements = document.querySelectorAll(".prices");
+function calculateTotal() {
             let total = 0;
+            // Select all price elements
+            let priceElements = document.querySelectorAll(".prices");
 
-            priceElements.forEach(price => {
-                total += parseFloat(price.textContent);
+            // Calculate the sum of prices
+            priceElements.forEach(priceElement => {
+                total += parseFloat(priceElement.textContent);
             });
 
-            // Remove existing total row if it exists
-            let existingTotalRow = document.getElementById("totalRow");
-            if (existingTotalRow) {
-                existingTotalRow.remove();
-            }
-
-            // Create a new row for the total price
-            let table = document.getElementById("groceryTable");
+            // Create a new row
             let totalRow = document.createElement("tr");
-            totalRow.id = "totalRow";  // Assign ID to prevent duplicates
-
             let totalCell = document.createElement("td");
-            totalCell.colSpan = 2; // Span across both columns
-            totalCell.style.fontWeight = "bold";
-            totalCell.textContent = "Total Price: $" + total.toFixed(2);
 
+            // Set attributes and values
+            totalCell.colSpan = 2; 
+            totalCell.textContent = "Total Price: $" + total.toFixed(2);
             totalRow.appendChild(totalCell);
-            table.appendChild(totalRow);
+
+            // Append the total row to the table
+            document.getElementById("grocery-table").appendChild(totalRow);
         }
 
-};
-
-getSumBtn.addEventListener("click", getSum);
-
+        calculateTotal();
