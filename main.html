@@ -1,34 +1,72 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Monthly Savings</title>
 </head>
-
 <body>
-	 <table id="grocery-table" border="1">
-        <tr>
-            <th>Item</th>
-            <th>Price</th>
-        </tr>
-        <tr class="item">
-            <td>Apples</td>
-            <td class="prices">2.5</td>
-        </tr>
-        <tr class="item">
-            <td>Bananas</td>
-            <td class="prices">1.8</td>
-        </tr>
-        <tr class="item">
-            <td>Oranges</td>
-            <td class="prices">3.2</td>
-        </tr>
-    </table>
-    <!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
+
+  <table style="width: 100%">
+    <caption>Monthly Savings</caption>
+    <tr>
+      <th>Item</th>
+      <th>Prices in Rs</th>
+    </tr>
+    <tr>
+      <td class="item">Tea</td>
+      <td class="price">50</td>
+    </tr>
+    <tr>
+      <td class="item">Coffee</td>
+      <td class="price">70</td>
+    </tr>
+    <tr>
+      <td class="item">Biscuits</td>
+      <td class="price">100</td>
+    </tr>
+    <tr>
+      <td class="item">Rice</td>
+      <td class="price">130</td>
+    </tr>
+    <tr>
+      <td class="item">Milk</td>
+      <td class="price">50</td>
+    </tr>
+  </table>
+
+  <button id="get-sum-btn">Get Total Price</button>
+
+  <script>
+    const getSumBtn = document.getElementById("get-sum-btn");
+
+    const getSum = () => {
+      const prices = document.querySelectorAll(".price");
+      let total = 0;
+
+      prices.forEach(price => {
+        total += Number(price.textContent);
+      });
+
+      let totalRow = document.getElementById("total-row");
+      if (!totalRow) {
+        totalRow = document.createElement("tr");
+        totalRow.id = "total-row";
+
+        const totalCell = document.createElement("td");
+        totalCell.setAttribute("colspan", "2");
+        totalCell.id = "ans";
+
+        totalRow.appendChild(totalCell);
+        document.querySelector("table").appendChild(totalRow);
+      }
+
+      document.getElementById("ans").textContent = Total Price: Rs ${total};
+    };
+
+    getSumBtn.addEventListener("click", getSum);
+  </script>
 
 </body>
-
 </html>
