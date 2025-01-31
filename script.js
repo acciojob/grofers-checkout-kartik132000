@@ -1,24 +1,27 @@
-function calculateTotal() {
-            let total = 0;
-            // Select all price elements
-            let priceElements = document.querySelectorAll(".prices");
+  const getSumBtn = document.getElementById("get-sum-btn");
 
-            // Calculate the sum of prices
-            priceElements.forEach(priceElement => {
-                total += parseFloat(priceElement.textContent);
-            });
+    const getSum = () => {
+      const prices = document.querySelectorAll(".price");
+      let total = 0;
 
-            // Create a new row
-            let totalRow = document.createElement("tr");
-            let totalCell = document.createElement("td");
+      prices.forEach(price => {
+        total += Number(price.textContent);
+      });
 
-            // Set attributes and values
-            totalCell.colSpan = 2; 
-            totalCell.textContent = "Total Price: $" + total.toFixed(2);
-            totalRow.appendChild(totalCell);
+      let totalRow = document.getElementById("total-row");
+      if (!totalRow) {
+        totalRow = document.createElement("tr");
+        totalRow.id = "total-row";
 
-            // Append the total row to the table
-            document.getElementById("grocery-table").appendChild(totalRow);
-        }
+        const totalCell = document.createElement("td");
+        totalCell.setAttribute("colspan", "2");
+        totalCell.id = "ans";
 
-        calculateTotal();
+        totalRow.appendChild(totalCell);
+        document.querySelector("table").appendChild(totalRow);
+      }
+
+      document.getElementById("ans").textContent = Total Price: Rs ${total};
+    };
+
+    getSumBtn.addEventListener("click", getSum);
